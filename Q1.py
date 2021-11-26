@@ -44,7 +44,7 @@ def color_transform():
 
     B, G, R = cv2.split(pic)
 
-    cv2.imshow('Averaged function', cv2.merge([B // 3, G // 3, R // 3]))
+    cv2.imshow('Averaged function', (B + G + R) // 3)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -53,7 +53,6 @@ def color_transform():
 def Blending():
     pic_weak = cv2.imread('./Q1_image/Dog_Weak.jpg')
     pic_strong = cv2.imread('./Q1_image/Dog_Strong.jpg')
-    flip_img = cv2.flip(pic_strong, 1)
 
     def do_nothing(x):
         pass
@@ -72,5 +71,5 @@ def Blending():
     pass
 
 if __name__ == "__main__":
-    Blending()
+    color_transform()
 # cv2.waitKey(0)
