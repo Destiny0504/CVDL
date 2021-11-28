@@ -43,7 +43,7 @@ def conv2d(img, filter, stride=1):
 
 def Gaussian_blur():
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
-    pic = cv2.imread('./Q3_image/House.jpg')
+    pic = cv2.imread('./Q3_Image/House.jpg')
     imgshow('original', pic)
     filter = create_Gaussian((3, 3), 1.5)
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
@@ -56,7 +56,7 @@ def Gaussian_blur():
 
 def Sobel_x():
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
-    pic = cv2.imread('./Q3_image/House.jpg')
+    pic = cv2.imread('./Q3_Image/House.jpg')
     gaussian_filter = create_Gaussian((3, 3), 1.5)
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
     result = conv2d(gray, gaussian_filter)
@@ -74,7 +74,7 @@ def Sobel_x():
 
 def Sobel_y():
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
-    pic = cv2.imread('./Q3_image/House.jpg')
+    pic = cv2.imread('./Q3_Image/House.jpg')
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
     gaussian_filter = create_Gaussian((3, 3), 1.5)
     g_result = conv2d(gray, gaussian_filter)

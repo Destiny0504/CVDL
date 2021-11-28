@@ -4,7 +4,7 @@ import numpy as np
 
 
 def resize():
-    pic = cv2.imread('./Q4_image/SQUARE-01.png')
+    pic = cv2.imread('./Q4_Image/SQUARE-01.png')
 
     resized_pic = cv2.resize(pic,(256, 256), interpolation=False)
     cv2.imshow('resize', resized_pic)
@@ -13,7 +13,7 @@ def resize():
     cv2.destroyAllWindows()
 
 def translation():
-    pic = cv2.imread('./Q4_image/SQUARE-01.png')
+    pic = cv2.imread('./Q4_Image/SQUARE-01.png')
 
     resized_pic = cv2.resize(pic,(256, 256), interpolation=False)
     translate_matrix = np.float32([[1, 0, 0], [0, 1, 60]])
@@ -24,7 +24,7 @@ def translation():
     cv2.destroyAllWindows()
 
 def scaling():
-    pic = cv2.imread('./Q4_image/SQUARE-01.png')
+    pic = cv2.imread('./Q4_Image/SQUARE-01.png')
 
     resized_pic = cv2.resize(pic,(256, 256), interpolation=False)
 
@@ -40,7 +40,7 @@ def scaling():
     cv2.destroyAllWindows()
 
 def sharing():
-    pic = cv2.imread('./Q4_image/SQUARE-01.png')
+    pic = cv2.imread('./Q4_Image/SQUARE-01.png')
 
     resized_pic = cv2.resize(pic,(256, 256), interpolation=False)
 

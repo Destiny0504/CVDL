@@ -1,20 +1,11 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'MainWindow - untitledqMCqCx.ui'
-##
-## Created by: Qt User Interface Compiler version 5.15.1
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
-
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets
-import time
+import threading
 import sys
+
+import cv2
 import Q1
 import Q2
 import Q3
@@ -93,10 +84,9 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        
+
         self.retranslateUi(MainWindow)
-        self.ctrl_n = QShortcut(QKeySequence("1"), self)
-        self.ctrl_n.activated.connect(Q1.loadimage)
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -128,7 +118,6 @@ class My_window(QMainWindow, Ui_MainWindow):
         super(My_window, self).__init__(parent)
         self.setupUi(self)
         self.initUI()
-        self.thread_pool = WorkThread
     def Q31(self):
         img = Q3.Gaussian_blur()
         Q3.imgshow('Gaussian', img)
@@ -159,16 +148,6 @@ class My_window(QMainWindow, Ui_MainWindow):
         self.pushButton_14.clicked.connect(Q4.scaling)
         self.pushButton_15.clicked.connect(Q4.sharing)
 
-class WorkThread(QThread):
-    trigger = pyqtSignal(str)
-
-    def __int__(self):
-        super(WorkThread, self).__init__()
-
-    def run(self):
-        for i in range(20):
-            time.sleep(1)
-            self.trigger.emit(str(i))
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

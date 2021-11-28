@@ -13,17 +13,19 @@ import numpy as np
 def loadimage():
     # file_path = os.path.join('Dataset_OpenCvDl_Hw1', 'Q1_Image', 'Sun.jpg')
     # print(f'\nfile_path : {file_path}')
-    pic = cv2.imread('./Q1_image/Sun.jpg')
+    pic = cv2.imread('./Q1_Image/Sun.jpg')
     print('Height = ', pic.shape[0])
     print('Width = ', pic.shape[1])
+    cv2.startWindowThread()
     cv2.imshow('Sun', pic)
-    cv2.waitKey(3000)
+    cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 def colorSep():
     # file_path = os.path.join('Dataset_OpenCvDl_Hw1', 'Q1_Image', 'Sun.jpg')
     # print(file_path)
-    pic = cv2.imread('./Q1_image/Sun.jpg')
+    pic = cv2.imread('./Q1_Image/Sun.jpg')
     
     B, G, R = cv2.split(pic)
 
@@ -38,7 +40,7 @@ def colorSep():
     pass
 
 def color_transform():
-    pic = cv2.imread('./Q1_image/Sun.jpg')
+    pic = cv2.imread('./Q1_Image/Sun.jpg')
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
     cv2.imshow('OpenCV function', gray)
 
@@ -51,8 +53,8 @@ def color_transform():
     pass
 
 def Blending():
-    pic_weak = cv2.imread('./Q1_image/Dog_Weak.jpg')
-    pic_strong = cv2.imread('./Q1_image/Dog_Strong.jpg')
+    pic_weak = cv2.imread('./Q1_Image/Dog_Weak.jpg')
+    pic_strong = cv2.imread('./Q1_Image/Dog_Strong.jpg')
 
     def do_nothing(x):
         pass
@@ -69,7 +71,6 @@ def Blending():
             break
 
     pass
-
 if __name__ == "__main__":
     color_transform()
 # cv2.waitKey(0)
