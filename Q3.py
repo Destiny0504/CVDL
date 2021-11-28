@@ -54,7 +54,7 @@ def Gaussian_blur():
     imgshow('Gaussian blur', result)
     return result
 
-def Sobel_x():
+def Sobel_x(show = True):
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
     pic = cv2.imread('./Q3_Image/House.jpg')
     gaussian_filter = create_Gaussian((3, 3), 1.5)
@@ -69,10 +69,11 @@ def Sobel_x():
     )
     sobelx_result = conv2d(result, sobelx_filter)
     sobelx_result = np.abs(sobelx_result)
-    imgshow('sobelx_result', sobelx_result/255)
+    if show:
+        imgshow('sobelx_result', sobelx_result/255)
     return sobelx_result/255
 
-def Sobel_y():
+def Sobel_y(show):
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
     pic = cv2.imread('./Q3_Image/House.jpg')
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
@@ -88,12 +89,13 @@ def Sobel_y():
     )
     sobely_result = conv2d(g_result, sobely_filter)
     sobely_result = np.abs(sobely_result)
-    imgshow('sobely_result', sobely_result/255)
+    if show:
+        imgshow('sobely_result', sobely_result/255)
     return sobely_result/255
 
 def Magnitude():
-    img1 = Sobel_x()
-    img2 = Sobel_y()
+    img1 = Sobel_x(show=False)
+    img2 = Sobel_y(show=False)
     mag = img1 ** 2 + img2 ** 2
     mag = mag ** 0.5
 
