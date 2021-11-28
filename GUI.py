@@ -13,8 +13,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets
+import time
 import sys
-import os
 import Q1
 import Q2
 import Q3
@@ -58,42 +58,18 @@ class Ui_MainWindow(object):
         self.groupBox_3 = QGroupBox(self.centralwidget)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setGeometry(QRect(570, 40, 261, 281))
-        self.textEdit = QLineEdit(self.groupBox_3)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setGeometry(QRect(70, 40, 121, 31))
-        self.textEdit_2 = QLineEdit(self.groupBox_3)
-        self.textEdit_2.setObjectName(u"textEdit_2")
-        self.textEdit_2.setGeometry(QRect(70, 90, 121, 31))
-        self.textEdit_3 = QLineEdit(self.groupBox_3)
-        self.textEdit_3.setObjectName(u"textEdit_3")
-        self.textEdit_3.setGeometry(QRect(70, 140, 121, 31))
-        self.textEdit_4 = QLineEdit(self.groupBox_3)
-        self.textEdit_4.setObjectName(u"textEdit_4")
-        self.textEdit_4.setGeometry(QRect(70, 190, 121, 31))
         self.pushButton_5 = QPushButton(self.groupBox_3)
         self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setGeometry(QRect(50, 240, 151, 31))
-        self.label = QLabel(self.groupBox_3)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(10, 40, 71, 31))
-        self.label_2 = QLabel(self.groupBox_3)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(10, 90, 71, 31))
-        self.label_3 = QLabel(self.groupBox_3)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(10, 140, 71, 31))
-        self.label_4 = QLabel(self.groupBox_3)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(10, 190, 71, 31))
-        self.label_5 = QLabel(self.groupBox_3)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(200, 40, 71, 31))
-        self.label_6 = QLabel(self.groupBox_3)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(200, 140, 71, 31))
-        self.label_7 = QLabel(self.groupBox_3)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(200, 190, 71, 31))
+        self.pushButton_5.setGeometry(QRect(50, 40, 151, 31))
+        self.pushButton_13 = QPushButton(self.groupBox_3)
+        self.pushButton_13.setObjectName(u"pushButton_13")
+        self.pushButton_13.setGeometry(QRect(50, 90, 151, 31))
+        self.pushButton_14 = QPushButton(self.groupBox_3)
+        self.pushButton_14.setObjectName(u"pushButton_14")
+        self.pushButton_14.setGeometry(QRect(50, 140, 151, 31))
+        self.pushButton_15 = QPushButton(self.groupBox_3)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+        self.pushButton_15.setGeometry(QRect(50, 190, 151, 31))
         self.groupBox_4 = QGroupBox(self.centralwidget)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.groupBox_4.setGeometry(QRect(360, 40, 181, 271))
@@ -117,9 +93,10 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        
         self.retranslateUi(MainWindow)
-
+        self.ctrl_n = QShortcut(QKeySequence("1"), self)
+        self.ctrl_n.activated.connect(Q1.loadimage)
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -135,14 +112,10 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"2.2 Gaussian blur", None))
         self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"2.3 Bilateral Filter", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"4. Transforms", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"4. Transformation", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Rotation:", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Scaling:", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Tx:", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Ty:", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"deg", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"pixel", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"pixel", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"4.1 Resize", None))
+        self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"4.2 translation", None))
+        self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"4.3 scaling, rotation", None))
+        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"4.4 sharing", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"3. Edge detection", None))
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"3.1 Gaussian Blur", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"3.2 Sobel X", None))
@@ -155,10 +128,7 @@ class My_window(QMainWindow, Ui_MainWindow):
         super(My_window, self).__init__(parent)
         self.setupUi(self)
         self.initUI()
-        self.textEdit.setText('30')
-        self.textEdit_2.setText('0.9')
-        self.textEdit_3.setText('200')
-        self.textEdit_4.setText('300')
+        self.thread_pool = WorkThread
     def Q31(self):
         img = Q3.Gaussian_blur()
         Q3.imgshow('Gaussian', img)
@@ -171,12 +141,6 @@ class My_window(QMainWindow, Ui_MainWindow):
     def Q34(self):
         img = Q3.Magnitude()
         Q3.imgshow('Magnitude', img)
-    def Q4(self):
-        rot = float(self.textEdit.text())
-        scale = float(self.textEdit_2.text())
-        tx = float(self.textEdit_3.text())
-        ty = float(self.textEdit_4.text())
-        Q4.transform(rot, scale, tx, ty)
 
     def initUI(self):
         self.pushButton.clicked.connect(Q1.loadimage)
@@ -190,8 +154,21 @@ class My_window(QMainWindow, Ui_MainWindow):
         self.pushButton_10.clicked.connect(self.Q32)
         self.pushButton_11.clicked.connect(self.Q33)
         self.pushButton_12.clicked.connect(self.Q34)
-        self.pushButton_5.clicked.connect(self.Q4)
+        self.pushButton_5.clicked.connect(Q4.resize)
+        self.pushButton_13.clicked.connect(Q4.translation)
+        self.pushButton_14.clicked.connect(Q4.scaling)
+        self.pushButton_15.clicked.connect(Q4.sharing)
 
+class WorkThread(QThread):
+    trigger = pyqtSignal(str)
+
+    def __int__(self):
+        super(WorkThread, self).__init__()
+
+    def run(self):
+        for i in range(20):
+            time.sleep(1)
+            self.trigger.emit(str(i))
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

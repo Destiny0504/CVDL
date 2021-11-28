@@ -17,7 +17,7 @@ def loadimage():
     print('Height = ', pic.shape[0])
     print('Width = ', pic.shape[1])
     cv2.imshow('Sun', pic)
-    cv2.waitKey(0)
+    cv2.waitKey(3000)
     cv2.destroyAllWindows()
 
 def colorSep():

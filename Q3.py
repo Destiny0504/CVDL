@@ -32,9 +32,7 @@ def create_Gaussian(s, sigma):
 def conv2d(img, filter, stride=1):
     row, col = img.shape[0], img.shape[1]
     ft_mid = (filter.shape[0] - 1) // 2
-    print('test')
     pad_img = np.pad(array = img, pad_width = ((ft_mid, ft_mid),(ft_mid, ft_mid)), mode='constant', constant_values=0)
-    print('test finish')
     result = np.zeros((row, col))
     for r in range(ft_mid, row + ft_mid, stride):
         for c in range(ft_mid, col + ft_mid, stride):
