@@ -73,7 +73,7 @@ def Sobel_x(show = True):
         imgshow('sobelx_result', sobelx_result/255)
     return sobelx_result/255
 
-def Sobel_y(show):
+def Sobel_y(show = True):
     # file_path = os.path.join('Dataset_opencvdl', 'Q3_Image', 'Chihiro.jpg')
     pic = cv2.imread('./Q3_Image/House.jpg')
     gray = cv2.cvtColor(pic, cv2.COLOR_BGR2GRAY)
