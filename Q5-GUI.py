@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets
+from torch.random import seed
 import Q5
 
 class Ui_MainWindow(object):
@@ -14,7 +15,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(20, 40, 161, 271))
+        self.groupBox.setGeometry(QRect(100, 40, 500, 271))
         self.pushButton = QPushButton(self.groupBox)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setGeometry(QRect(10, 40, 141, 31))
@@ -27,6 +28,10 @@ class Ui_MainWindow(object):
         self.pushButton_7 = QPushButton(self.groupBox)
         self.pushButton_7.setObjectName(u"pushButton_7")
         self.pushButton_7.setGeometry(QRect(10, 200, 141, 41))
+        self.text = QLineEdit(self.groupBox)
+        self.text.setObjectName(u"text")
+        self.text.setGeometry(QRect(300, 200, 141, 41))
+        self.text.setText('10')
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -53,12 +58,16 @@ class My_window(QMainWindow, Ui_MainWindow):
         super(My_window, self).__init__(parent)
         self.setupUi(self)
         self.initUI()
-
+    def inference (self):
+        which = int(self.text.text())
+        Q5.infer(which)
+        
     def initUI(self):
         self.pushButton.clicked.connect(Q5.load_data)
         self.pushButton_2.clicked.connect(Q5.print_hyper)
         self.pushButton_3.clicked.connect(Q5.print_func)
-        self.pushButton_7.clicked.connect(Q5.print_func)
+        self.pushButton_7.clicked.connect(self.inference)
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
